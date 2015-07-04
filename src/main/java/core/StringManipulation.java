@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 public class StringManipulation {
 
@@ -44,6 +45,16 @@ public class StringManipulation {
 			iLetters.add( iLetter );
 		}
 		return iLetters;
+	}
+
+	public static boolean validateIPV4( String iIPStr ){
+		String lRegexIPV4 = "(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])";
+		return Pattern.matches( lRegexIPV4, iIPStr);
+	}
+
+	public static boolean validateIPV6( String iIPStr ) {
+		String lRegexIPV6 = "([0-9A-F]{0,4}:){7}([0-9A-F]){0,4}";
+		return Pattern.matches( lRegexIPV6, iIPStr );
 	}
 
 }
