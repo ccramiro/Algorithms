@@ -57,4 +57,9 @@ public class StringManipulation {
 		return Pattern.matches( lRegexIPV6, iIPStr );
 	}
 
+	public static boolean validateMailAddress( String iMail ){
+		String lRegexMail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+		return Pattern.matches( lRegexMail, iMail );
+	}
 }

@@ -44,4 +44,15 @@ public class StringManipulationTest {
 		Assert.assertTrue( StringManipulation.validateIPV6("2001:DB8::8:800:200C:417A:") );
 	}
 
+	@Test
+	public void TestMailAddress(){
+		Assert.assertTrue( StringManipulation.validateMailAddress( "abcde@mail.com" ) );
+		Assert.assertTrue( StringManipulation.validateMailAddress( "abcde.fghi@mail.com" ) );
+		Assert.assertFalse( StringManipulation.validateMailAddress( "abcde.fghi@mail" ) );
+		Assert.assertFalse( StringManipulation.validateMailAddress( "abcde.fghi@mail,com" ) );
+		Assert.assertFalse( StringManipulation.validateMailAddress( "abcde.fghi@" ) );
+		Assert.assertFalse( StringManipulation.validateMailAddress( "@mail.com" ) );
+		Assert.assertFalse( StringManipulation.validateMailAddress( "abcde.fghi.com" ) );
+		Assert.assertFalse( StringManipulation.validateMailAddress( ".@.com" ) );
+	}
 }
