@@ -1,0 +1,7 @@
+# Git ignore, ignoring target eclipse and maven folders
+
+.classpath
+.project
+.settings
+target
+
