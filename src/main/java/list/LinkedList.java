@@ -63,6 +63,18 @@ public class LinkedList {
 
 	}
 
+	public void reverse(){
+		Node lNewList = null;
+		Node lCurrentNode = mHead;
+		while ( lCurrentNode != null ){
+			Node lNext = lCurrentNode.mNext;
+			lCurrentNode.mNext = lNewList;
+			lNewList = lCurrentNode;
+			lCurrentNode = lNext;
+		}
+		mHead = lNewList;
+	}
+
 	public LinkedList insertTest( int iValue ){
 		insert( iValue );
 		return this;
@@ -100,6 +112,8 @@ public class LinkedList {
 		 .removeTest( 5 )
 		 .removeTest( 14 )
 		 .insertTest( 7 );
+		System.out.println( "List " + m );
+		m.reverse();
 		System.out.println( "List " + m );
 	}
 
