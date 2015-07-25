@@ -59,6 +59,48 @@ public class BinarySearchTree {
 		return lNode.mValue;
 	}
 
+	public void inOrder( ){
+		inOrder( mRoot );
+	}
+
+	private void inOrder( Node iRoot ){
+		if ( null == iRoot ){
+			return;
+		}
+
+		inOrder( iRoot.mLeft );
+		System.out.println( iRoot );
+		inOrder( iRoot.mRight );
+	}
+
+	public void preOrder(){
+		preOrder( mRoot );
+	}
+
+	private void preOrder( Node iRoot ){
+		if ( null == iRoot ){
+			return;
+		}
+
+		System.out.println( iRoot );
+		preOrder( iRoot.mLeft );
+		preOrder( iRoot.mRight );
+	}
+
+	public void postOrder(){
+		postOrder( mRoot );
+	}
+
+	private void postOrder( Node iRoot ){
+		if ( null == iRoot ){
+			return;
+		}
+
+		postOrder( iRoot.mLeft );
+		postOrder( iRoot.mRight );
+		System.out.println( iRoot );
+	}
+
 	public static void main( String[] args ) {
 		BinarySearchTree lBST = new BinarySearchTree();
 		lBST.insert( 5 );
