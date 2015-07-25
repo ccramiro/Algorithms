@@ -132,6 +132,45 @@ public class BinarySearchTree {
 		return 1 + countNodes( iNode.mLeft ) + countNodes( iNode.mRight );
 	}
 
+	public int depthOf( int iValue ){
+		return depth( mRoot, new Node( iValue ) );
+	}
+
+	private int depth( Node lCurrentNode, Node iNode ){
+		if ( null == lCurrentNode ){
+			return 0;
+		}
+
+		if ( lCurrentNode.mValue == iNode.mValue )
+			return 1;
+		else if ( lCurrentNode.mValue > iNode.mValue )
+			return 1 + depth( lCurrentNode.mLeft, iNode );
+		else {
+			return 1 + depth( lCurrentNode.mRight, iNode );
+		}
+
+	}
+
+	public Node findLeastCommonAncestor( int a, int b ){
+		return findLeastCommonAncestor( this.mRoot, a, b );
+	}
+
+	private Node findLeastCommonAncestor( Node iNode, int a, int b ){
+		if ( null == iNode )
+			return null;
+		// searching targets from top down
+		if ( iNode.mValue > a && iNode.mValue > b) {
+			// targets to the left
+			return findLeastCommonAncestor( iNode.mLeft, a, b );
+		} else if ( iNode.mValue < a && iNode.mValue < b ) {
+			// targets to the right
+			return findLeastCommonAncestor( iNode.mRight, a, b );
+		} else {
+			// target in between
+			return iNode;
+		}
+	}
+
 	public static void main( String[] args ) {
 		BinarySearchTree lBST = new BinarySearchTree();
 		lBST.insert( 5 );
@@ -153,6 +192,8 @@ public class BinarySearchTree {
 		lBST.postOrder();
 		System.out.println( "Duplicates of 4: " + lBST.duplicates( 4 ) );
 		System.out.println( "Number of nodes: " + lBST.countNodes() );
+		System.out.println( "Depth of 11: " + lBST.depthOf( 11 ) );
+		System.out.println( "Least Common Ancestor of 1 and 6: " + lBST.findLeastCommonAncestor( 1, 6 ) );
 	}
 
 }
