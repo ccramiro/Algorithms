@@ -104,6 +104,22 @@ public class BinarySearchTree {
 		System.out.print( iRoot + ", " );
 	}
 
+	public int duplicates( int lValue ){
+		return duplicates( this.mRoot, lValue );
+	}
+
+	private int duplicates( Node iRoot, int lValue ){
+		if ( null == iRoot ){
+			return 0;
+		}
+
+		int c = 0;
+		if ( iRoot.mValue == lValue ){
+			c++;
+		}
+		return c + duplicates( iRoot.mLeft, lValue ) + duplicates( iRoot.mRight, lValue );
+	}
+
 	public static void main( String[] args ) {
 		BinarySearchTree lBST = new BinarySearchTree();
 		lBST.insert( 5 );
@@ -114,16 +130,16 @@ public class BinarySearchTree {
 		lBST.insert( 3 );
 		lBST.insert( 4 );
 		lBST.insert( 1 );
-		lBST.insert( 19 );
+		lBST.insert( 4 );
 		lBST.insert( 12 );
 		lBST.insert( 7 );
-		lBST.insert( 9 );
 		TreePrinter.printNode( lBST.mRoot );
 		System.out.println( "Min: " + lBST.getMin() );
 		System.out.println( "Max: " + lBST.getMax() );
 		lBST.preOrder();
 		lBST.inOrder();
 		lBST.postOrder();
+		System.out.println( "Duplicates of 4: " + lBST.duplicates( 4 ) );
 	}
 
 }
