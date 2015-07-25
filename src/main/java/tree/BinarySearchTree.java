@@ -120,6 +120,18 @@ public class BinarySearchTree {
 		return c + duplicates( iRoot.mLeft, lValue ) + duplicates( iRoot.mRight, lValue );
 	}
 
+	public int countNodes(){
+		return countNodes( mRoot );
+	}
+
+	private int countNodes( Node iNode ){
+		if ( null == iNode ){
+			return 0;
+		}
+
+		return 1 + countNodes( iNode.mLeft ) + countNodes( iNode.mRight );
+	}
+
 	public static void main( String[] args ) {
 		BinarySearchTree lBST = new BinarySearchTree();
 		lBST.insert( 5 );
@@ -140,6 +152,7 @@ public class BinarySearchTree {
 		lBST.inOrder();
 		lBST.postOrder();
 		System.out.println( "Duplicates of 4: " + lBST.duplicates( 4 ) );
+		System.out.println( "Number of nodes: " + lBST.countNodes() );
 	}
 
 }
