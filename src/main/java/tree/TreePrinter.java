@@ -16,7 +16,7 @@ public class TreePrinter {
     }
 
     private static void printNodeInternal(List<Node> nodes, int level, int maxLevel) {
-        if (nodes.isEmpty() || isAllElementsNull(nodes))
+        if (nodes.isEmpty() || areAllElementsNull(nodes))
             return;
 
         int floor = maxLevel - level;
@@ -83,7 +83,7 @@ public class TreePrinter {
         return Math.max( maxLevel(node.mLeft), maxLevel( node.mRight ) ) + 1;
     }
 
-    private static boolean isAllElementsNull( List<Node> list ) {
+    private static boolean areAllElementsNull( List<Node> list ) {
         for (Node object : list) {
             if (object != null)
                 return false;
