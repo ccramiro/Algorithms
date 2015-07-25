@@ -61,6 +61,7 @@ public class BinarySearchTree {
 
 	public void inOrder( ){
 		inOrder( mRoot );
+		System.out.println();
 	}
 
 	private void inOrder( Node iRoot ){
@@ -69,12 +70,13 @@ public class BinarySearchTree {
 		}
 
 		inOrder( iRoot.mLeft );
-		System.out.println( iRoot );
+		System.out.print( iRoot + ", " );
 		inOrder( iRoot.mRight );
 	}
 
 	public void preOrder(){
 		preOrder( mRoot );
+		System.out.println();
 	}
 
 	private void preOrder( Node iRoot ){
@@ -82,13 +84,14 @@ public class BinarySearchTree {
 			return;
 		}
 
-		System.out.println( iRoot );
+		System.out.print( iRoot + ", " );
 		preOrder( iRoot.mLeft );
 		preOrder( iRoot.mRight );
 	}
 
 	public void postOrder(){
 		postOrder( mRoot );
+		System.out.println();
 	}
 
 	private void postOrder( Node iRoot ){
@@ -98,7 +101,7 @@ public class BinarySearchTree {
 
 		postOrder( iRoot.mLeft );
 		postOrder( iRoot.mRight );
-		System.out.println( iRoot );
+		System.out.print( iRoot + ", " );
 	}
 
 	public static void main( String[] args ) {
@@ -118,6 +121,9 @@ public class BinarySearchTree {
 		TreePrinter.printNode( lBST.mRoot );
 		System.out.println( "Min: " + lBST.getMin() );
 		System.out.println( "Max: " + lBST.getMax() );
+		lBST.preOrder();
+		lBST.inOrder();
+		lBST.postOrder();
 	}
 
 }
