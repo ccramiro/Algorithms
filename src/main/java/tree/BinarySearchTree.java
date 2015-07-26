@@ -171,6 +171,20 @@ public class BinarySearchTree {
 		}
 	}
 
+	public int depth(){
+		return depth( mRoot );
+	}
+
+	private int depth( Node iNode ){
+		if ( null == iNode )
+			return 0;
+
+		int lDepthLeft = depth( iNode.mLeft );
+		int lDepthRight = depth( iNode.mRight );
+
+		return lDepthLeft > lDepthRight? lDepthLeft + 1 : lDepthRight + 1;
+	}
+
 	public static void main( String[] args ) {
 		BinarySearchTree lBST = new BinarySearchTree();
 		lBST.insert( 5 );
@@ -194,6 +208,7 @@ public class BinarySearchTree {
 		System.out.println( "Number of nodes: " + lBST.countNodes() );
 		System.out.println( "Depth of 11: " + lBST.depthOf( 11 ) );
 		System.out.println( "Least Common Ancestor of 1 and 6: " + lBST.findLeastCommonAncestor( 1, 6 ) );
+		System.out.println( "Total depth: " + lBST.depth() );
 	}
 
 }
