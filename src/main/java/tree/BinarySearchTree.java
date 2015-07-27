@@ -132,6 +132,19 @@ public class BinarySearchTree {
 		return 1 + countNodes( iNode.mLeft ) + countNodes( iNode.mRight );
 	}
 
+	 public boolean validateBST(){
+		 return validateBST( mRoot, Integer.MIN_VALUE, Integer.MAX_VALUE );
+	 }
+
+	 private boolean validateBST( Node iRoot, int iLeft, int iRight ){
+		 if ( null == iRoot )
+			 return true;
+		 if ( iRoot.mValue < iLeft || iRoot.mValue > iRight ){
+			 return false;
+		 }
+		 return validateBST( iRoot.mLeft, iLeft, iRoot.mValue ) && validateBST( iRoot.mRight, iRoot.mValue, iRight );
+	 }
+
 	public int depthOf( int iValue ){
 		return depth( mRoot, new Node( iValue ) );
 	}
@@ -209,6 +222,7 @@ public class BinarySearchTree {
 		System.out.println( "Depth of 11: " + lBST.depthOf( 11 ) );
 		System.out.println( "Least Common Ancestor of 1 and 6: " + lBST.findLeastCommonAncestor( 1, 6 ) );
 		System.out.println( "Total depth: " + lBST.depth() );
+		System.out.println( "Is a valid BST: " + lBST.validateBST() );
 	}
 
 }
