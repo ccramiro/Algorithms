@@ -7,6 +7,7 @@ public class QuickSort {
 	}
 
 	static void sort( int[] iNumbers, int lStartIndex, int lEndIndex ){
+		// Splitting and calculating pivot
 		int lIndex = partition( iNumbers, lStartIndex, lEndIndex );
 		if ( lStartIndex < lEndIndex -1 ){
 			sort( iNumbers, lStartIndex, lIndex - 1);

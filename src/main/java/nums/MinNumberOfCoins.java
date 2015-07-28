@@ -48,6 +48,6 @@ public class MinNumberOfCoins {
 	public static void main( String[] args ){
 		// Boxing into integers
 		Integer[] lListOfCoins = { 1, 2, 5, 10, 25, 50, 100, 500 };
- 		System.out.println( minNumberOfCoins( lListOfCoins, 1089 ) );
+		System.out.println( "Coins needed for 1089: " + minNumberOfCoins( lListOfCoins, 1089 ) );
 	}
 }

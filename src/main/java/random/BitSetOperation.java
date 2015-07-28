@@ -5,25 +5,27 @@ import java.util.Random;
 
 public class BitSetOperation {
 
-	public static void doStuff() {
-		BitSet s = new BitSet();
-		final int billion = 100000000;
-		for (int l = 0; l < billion; l++) {
-			s.set(l);
+	public static int[] getRandomNumbers( int iLimit, int iN  ) {
+		BitSet lBitSet = new BitSet();
+		for (int l = 0; l < iLimit; l++) {
+			lBitSet.set( l );
 		}
-		while (true) {
+
+		int[] lOutputNumbers = new int[ iN ];
+		int i = 0;
+		while ( i < iN ) {
 			Random rand = new Random();
-			int n = (rand.nextInt(billion));
-			if (s.get(n))
-				System.out.println(n);
-			try {
-				Thread.sleep(1000);
-			} catch (Exception ex) {
-			}
+			int lRnd = ( rand.nextInt( iLimit ) );
+			if ( lBitSet.get( lRnd ) )
+				 lOutputNumbers[i++] = lRnd;
 		}
+		return lOutputNumbers;
 	}
 
 	public static void main(String args[]) {
-		doStuff();
+		int[] lNumbers = getRandomNumbers( 1000000, 15 );
+		for ( int i : lNumbers ) {
+			System.out.print( i + ", ");
+		}
 	}
 }
