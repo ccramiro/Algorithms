@@ -46,6 +46,19 @@ public class BinarySearchTree {
 		return lNode.mValue;
 	}
 
+	public int getMinRec(){
+		return getMinRec( mRoot );
+	}
+
+	public int getMinRec( Node iRoot ){
+		if ( null == iRoot )
+			return 0;
+		if ( null == iRoot.mLeft )
+			return iRoot.mValue;
+
+		return getMinRec( iRoot.mLeft );
+	}
+
 	// Traversing tree to the rightmost element
 	public int getMax(){
 		if ( null == mRoot ){
@@ -192,10 +205,10 @@ public class BinarySearchTree {
 		if ( null == iNode )
 			return 0;
 
-		int lDepthLeft = depth( iNode.mLeft );
-		int lDepthRight = depth( iNode.mRight );
+		int lDepthLeft = 1 + depth( iNode.mLeft );
+		int lDepthRight = 1 + depth( iNode.mRight );
 
-		return lDepthLeft > lDepthRight? lDepthLeft + 1 : lDepthRight + 1;
+		return lDepthLeft > lDepthRight? lDepthLeft : lDepthRight;
 	}
 
 	public static void main( String[] args ) {
@@ -207,12 +220,12 @@ public class BinarySearchTree {
 		lBST.insert( 11 );
 		lBST.insert( 3 );
 		lBST.insert( 4 );
-		lBST.insert( 1 );
-		lBST.insert( 4 );
+		lBST.insert( 13 );
 		lBST.insert( 12 );
 		lBST.insert( 7 );
 		TreePrinter.printNode( lBST.mRoot );
 		System.out.println( "Min: " + lBST.getMin() );
+		System.out.println( "MinRec: " + lBST.getMinRec() );
 		System.out.println( "Max: " + lBST.getMax() );
 		lBST.preOrder();
 		lBST.inOrder();

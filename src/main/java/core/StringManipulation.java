@@ -62,4 +62,19 @@ public class StringManipulation {
 		        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 		return Pattern.matches( lRegexMail, iMail );
 	}
+
+	public static int parseInt( String iInput ){
+		/*
+		 * Implement parseInt() without using Integer Class. 
+		 * 
+		 * Use Ascii value to get int value. and loop through the characters
+		 * multiplying a counter by 10 to keep decimal places.
+		 * Throw exception when ascii value is out of range
+		 * and check initial positive or negative.
+		 */
+		char lCharacter = iInput.charAt( 0 );
+		int lAscii = lCharacter;
+		// TODO
+		return 0;
+	}
 }

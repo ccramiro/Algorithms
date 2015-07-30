@@ -75,6 +75,19 @@ public class LinkedList {
 		mHead = lNewList;
 	}
 
+	public int size(){
+		return size( this.mHead );
+	}
+
+	public int size( Node iNode ){
+		if ( null == iNode )
+			return 0;
+
+		return 1 + size( iNode.mNext );
+	}
+
+	// Test methods to speed up creation of tests
+	// Just returning instance of this to speed up creation of method calls
 	public LinkedList insertTest( int iValue ){
 		insert( iValue );
 		return this;
@@ -115,6 +128,7 @@ public class LinkedList {
 		System.out.println( "List " + m );
 		m.reverse();
 		System.out.println( "List " + m );
+		System.out.println( "Size: " + m.size() );
 	}
 
 }
