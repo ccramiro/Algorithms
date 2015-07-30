@@ -13,6 +13,10 @@ public class StringManipulation {
 	// Class is final as side effect
 	private StringManipulation( ) { }
 
+	public static String collapse( String input ){
+		return input.replaceAll("\\s+", " ");
+	}
+
 	public static boolean getPalindrome( String iWord ){
 
 		List<Character> lPalindrome = new LinkedList<>(); // ArrayList can also be used here
@@ -76,5 +80,9 @@ public class StringManipulation {
 		int lAscii = lCharacter;
 		// TODO
 		return 0;
+	}
+
+	public static void main( String[] args ){
+		System.out.println( collapse( "How    are   yo u ") );
 	}
 }
