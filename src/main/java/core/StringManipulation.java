@@ -13,8 +13,8 @@ public class StringManipulation {
 	// Class is final as side effect
 	private StringManipulation( ) { }
 
-	public static String collapse( String input ){
-		return input.replaceAll("\\s+", " ");
+	public static String collapseSpaces( String iInputText ){
+		return iInputText.replaceAll( "\\s+", " " );
 	}
 
 	public static boolean getPalindrome( String iWord ){
@@ -83,6 +83,6 @@ public class StringManipulation {
 	}
 
 	public static void main( String[] args ){
-		System.out.println( collapse( "How    are   yo u ") );
+		System.out.println( collapseSpaces( "How    are   yo u ") );
 	}
 }
