@@ -17,6 +17,11 @@ public class StringManipulation {
 		return iInputText.replaceAll( "\\s+", " " );
 	}
 
+	public static String removeInbetweenSpace( String iInputTest ){
+		String lPattern = "(\\w)(\\s+)([\\.,])";
+		return iInputTest.replaceAll( lPattern, "$1$3" );
+	}
+
 	public static boolean getPalindrome( String iWord ){
 
 		List<Character> lPalindrome = new LinkedList<>(); // ArrayList can also be used here
@@ -84,5 +89,6 @@ public class StringManipulation {
 
 	public static void main( String[] args ){
 		System.out.println( collapseSpaces( "How    are   yo u ") );
+		System.out.println( removeInbetweenSpace( "I have ,no idea. of what . I, am . doing , ") );
 	}
 }
