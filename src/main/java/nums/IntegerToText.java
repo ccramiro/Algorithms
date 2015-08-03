@@ -52,8 +52,6 @@ public class IntegerToText {
 	}
 
 	private static String printUnits( int iNumber ){
-		if ( iNumber > 0 && iNumber < 10 )
-			return eUnit.values()[ iNumber ].toString();
 		return eUnit.values()[ iNumber % 10 ].toString();
 	}
 
