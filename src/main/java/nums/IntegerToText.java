@@ -64,9 +64,7 @@ public class IntegerToText {
 	}
 
 	private static String printTens( int iNumber ){
-		if ( iNumber >= 0 && iNumber < 100 )
-			return eTens.values()[ iNumber / 10 ].name();
-		throw new UnsupportedOperationException();
+		return eTens.values()[ Math.abs( ( iNumber / 10 ) % 10 ) ].name();
 	}
 
 	public static void main( String[] args ){
