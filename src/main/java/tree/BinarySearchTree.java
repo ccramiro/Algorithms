@@ -1,5 +1,8 @@
 package tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree {
 
 	public Node mRoot;
@@ -211,6 +214,25 @@ public class BinarySearchTree {
 		return lDepthLeft > lDepthRight? lDepthLeft : lDepthRight;
 	}
 
+	public boolean hasCycle( ) {
+		return hasCycle( mRoot, new ArrayList<Node>() );
+	}
+
+	private boolean hasCycle( Node iNode, List<Node> iVisited ){
+		if ( null == iNode )
+			return false;
+
+		iVisited.add( iNode );
+
+		// If the child is in the visited list, it has cycles
+		if ( iVisited.contains( iNode.mLeft ) ||
+				iVisited.contains( iNode.mRight ) )
+			return true;
+
+		return hasCycle( iNode.mLeft, iVisited ) ||
+				hasCycle( iNode.mRight, iVisited );
+	}
+
 	public static void main( String[] args ) {
 		BinarySearchTree lBST = new BinarySearchTree();
 		lBST.insert( 5 );
@@ -236,6 +258,7 @@ public class BinarySearchTree {
 		System.out.println( "Least Common Ancestor of 1 and 6: " + lBST.findLeastCommonAncestor( 1, 6 ) );
 		System.out.println( "Total depth: " + lBST.depth() );
 		System.out.println( "Is a valid BST: " + lBST.validateBST() );
+		System.out.println( "Does it have cycles? " +lBST.hasCycle() );
 	}
 
 }
