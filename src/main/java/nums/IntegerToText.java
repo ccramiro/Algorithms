@@ -56,8 +56,10 @@ public class IntegerToText {
 	}
 
 	private static String printFromTenToTwenty( int iNumber ){
-		if ( iNumber > 9 && iNumber < 20 )
-			return eFromTenToTwenty.values()[ iNumber % 10 ].name();
+		int lNumberToCheck = iNumber % 100;
+		if ( ( lNumberToCheck > 9 && lNumberToCheck < 20 ) ||
+				( lNumberToCheck < -9 && lNumberToCheck > -20 ) )
+			return eFromTenToTwenty.values()[ Math.abs( iNumber % 10 ) ].name();
 		throw new UnsupportedOperationException();
 	}
 
