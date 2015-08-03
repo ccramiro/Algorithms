@@ -52,7 +52,7 @@ public class IntegerToText {
 	}
 
 	private static String printUnits( int iNumber ){
-		return eUnit.values()[ iNumber % 10 ].toString();
+		return eUnit.values()[ Math.abs( iNumber % 10 ) ].toString();
 	}
 
 	private static String printFromTenToTwenty( int iNumber ){
@@ -68,7 +68,7 @@ public class IntegerToText {
 	}
 
 	public static void main( String[] args ){
-		System.out.println( "23: " + fromIntegerToText( 13 ) );
+		System.out.println( "13: " + fromIntegerToText( 13 ) );
 		System.out.println( "5: " + fromIntegerToText( 5 ) );
 		System.out.println( "23: " + fromIntegerToText( 23 ) );
 		System.out.println( "40: " + fromIntegerToText( 40 ) );
