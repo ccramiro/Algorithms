@@ -40,14 +40,15 @@ public class IntegerToText {
 	}
 
 	public static String fromIntegerToText( int iNumber ){
-		if ( iNumber < 1 )
-			throw new UnsupportedOperationException();
-		if ( iNumber < 10 )
-			return printUnits( iNumber );
-		if ( iNumber < 20 )
-			return printFromTenToTwenty( iNumber );
-		if ( iNumber < 100 )
-			return printTens( iNumber ) + printUnits( iNumber % 10 );
+		if ( iNumber == 0 )
+			return "0";
+		if ( iNumber > -10 && iNumber < 10 )
+			return iNumber > 0 ? printUnits( iNumber ) : "MINUS " + printUnits( iNumber );
+		if ( iNumber > -20 && iNumber < 20 )
+			return iNumber > 0 ? printFromTenToTwenty( iNumber ) : "MINUS " + printFromTenToTwenty( iNumber );
+		if ( iNumber > -100 && iNumber < 100 )
+			return iNumber > 0 ? printTens( iNumber ) + printUnits( iNumber % 10 ) :
+				"MINUS " + printTens( iNumber ) + printUnits( iNumber % 10 );
 		throw new UnsupportedOperationException();
 	}
 
@@ -76,6 +77,14 @@ public class IntegerToText {
 		System.out.println( "18: " + fromIntegerToText( 18 ) );
 		System.out.println( "4: " + fromIntegerToText( 4 ) );
 		System.out.println( "95: " + fromIntegerToText( 95 ) );
+		System.out.println( "-13: " + fromIntegerToText( -13 ) );
+		System.out.println( "-5: " + fromIntegerToText( -5 ) );
+		System.out.println( "-23: " + fromIntegerToText( -23 ) );
+		System.out.println( "-40: " + fromIntegerToText( -40 ) );
+		System.out.println( "-72: " + fromIntegerToText( -72 ) );
+		System.out.println( "-18: " + fromIntegerToText( -18 ) );
+		System.out.println( "-4: " + fromIntegerToText( -4 ) );
+		System.out.println( "-95: " + fromIntegerToText( -95 ) );
 	}
 
 }
