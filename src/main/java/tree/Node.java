@@ -1,17 +1,17 @@
 package tree;
 
-class Node {
+class Node<T> {
 
-    Node mLeft, mRight;
-    int mValue;
+    public Node<T> mLeft, mRight;
+    public T mValue;
 
-    public Node( int iValue ) {
+    public Node( T iValue ) {
         this.mValue = iValue;
     }
 
 	@Override
 	public String toString(){
-		return Integer.toString( this.mValue );
+		return mValue.toString();
 	}
 
 }

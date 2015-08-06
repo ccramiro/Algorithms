@@ -3,13 +3,13 @@ package tree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinarySearchTree {
+public class BinarySearchTree<T extends Comparable<T>> {
 
-	public Node mRoot;
+	public Node<T> mRoot;
 
 	// Insert a new node
-	public void insert( int iValue ){
-		Node iNode = new Node( iValue );
+	public void insert( T iValue ){
+		Node<T> iNode = new Node<T>( iValue );
 
 		if ( null == mRoot ){
 			mRoot = iNode;
@@ -19,9 +19,9 @@ public class BinarySearchTree {
 		insert( mRoot, iNode );
 	}
 
-	private void insert( Node iCurrentRoot, Node iNode ){
+	private void insert( Node<T> iCurrentRoot, Node<T> iNode ){
 		// Reconsider current root - moving left or right down the tree
-		if ( iCurrentRoot.mValue > iNode.mValue ){
+		if( iCurrentRoot.mValue.compareTo( iNode.mValue ) > 0){
 			if ( null == iCurrentRoot.mLeft ){
 				iCurrentRoot.mLeft = iNode;
 			} else {
@@ -37,25 +37,25 @@ public class BinarySearchTree {
 	}
 
 	// Traversing tree to the leftmost element
-	public int getMin(){
+	public T getMin(){
 		if ( null == mRoot ){
-			return 0;
+			return null;
 		}
 
-		Node lNode = mRoot;
+		Node<T> lNode = mRoot;
 		while ( null != lNode.mLeft ){
 			lNode = lNode.mLeft;
 		}
 		return lNode.mValue;
 	}
 
-	public int getMinRec(){
+	public T getMinRec(){
 		return getMinRec( mRoot );
 	}
 
-	public int getMinRec( Node iRoot ){
+	public T getMinRec( Node<T> iRoot ){
 		if ( null == iRoot )
-			return 0;
+			return null;
 		if ( null == iRoot.mLeft )
 			return iRoot.mValue;
 
@@ -63,12 +63,12 @@ public class BinarySearchTree {
 	}
 
 	// Traversing tree to the rightmost element
-	public int getMax(){
+	public T getMax(){
 		if ( null == mRoot ){
-			return 0;
+			return null;
 		}
 
-		Node lNode = mRoot;
+		Node<T> lNode = mRoot;
 		while ( null != lNode.mRight ){
 			lNode = lNode.mRight;
 		}
@@ -80,7 +80,7 @@ public class BinarySearchTree {
 		System.out.println();
 	}
 
-	private void inOrder( Node iRoot ){
+	private void inOrder( Node<T> iRoot ){
 		if ( null == iRoot ){
 			return;
 		}
@@ -95,7 +95,7 @@ public class BinarySearchTree {
 		System.out.println();
 	}
 
-	private void preOrder( Node iRoot ){
+	private void preOrder( Node<T> iRoot ){
 		if ( null == iRoot ){
 			return;
 		}
@@ -110,7 +110,7 @@ public class BinarySearchTree {
 		System.out.println();
 	}
 
-	private void postOrder( Node iRoot ){
+	private void postOrder( Node<T> iRoot ){
 		if ( null == iRoot ){
 			return;
 		}
@@ -124,13 +124,13 @@ public class BinarySearchTree {
 		return duplicates( this.mRoot, lValue );
 	}
 
-	private int duplicates( Node iRoot, int lValue ){
+	private int duplicates( Node<T> iRoot, int lValue ){
 		if ( null == iRoot ){
 			return 0;
 		}
 
 		int c = 0;
-		if ( iRoot.mValue == lValue ){
+		if ( iRoot.mValue.equals( lValue ) ){
 			c++;
 		}
 		return c + duplicates( iRoot.mLeft, lValue ) + duplicates( iRoot.mRight, lValue );
@@ -140,7 +140,7 @@ public class BinarySearchTree {
 		return countNodes( mRoot );
 	}
 
-	private int countNodes( Node iNode ){
+	private int countNodes( Node<T> iNode ){
 		if ( null == iNode ){
 			return 0;
 		}
@@ -149,30 +149,30 @@ public class BinarySearchTree {
 	}
 
 	 public boolean validateBST(){
-		 return validateBST( mRoot, Integer.MIN_VALUE, Integer.MAX_VALUE );
+		 return validateBST( mRoot, getMin(), getMax() );
 	 }
 
-	 private boolean validateBST( Node iRoot, int iLeft, int iRight ){
+	 private boolean validateBST( Node<T> iRoot, T iLeft, T iRight ){
 		 if ( null == iRoot )
 			 return true;
-		 if ( iRoot.mValue < iLeft || iRoot.mValue > iRight ){
+		 if ( iRoot.mValue.compareTo( iLeft ) < 0 || iRoot.mValue.compareTo( iRight ) > 0 ){
 			 return false;
 		 }
 		 return validateBST( iRoot.mLeft, iLeft, iRoot.mValue ) && validateBST( iRoot.mRight, iRoot.mValue, iRight );
 	 }
 
-	public int depthOf( int iValue ){
-		return depth( mRoot, new Node( iValue ) );
+	public int depthOf( T iValue ){
+		return depth( mRoot, new Node<T>( iValue ) );
 	}
 
-	private int depth( Node lCurrentNode, Node iNode ){
+	private int depth( Node<T> lCurrentNode, Node<T> iNode ){
 		if ( null == lCurrentNode ){
 			return 0;
 		}
 
 		if ( lCurrentNode.mValue == iNode.mValue )
 			return 1;
-		else if ( lCurrentNode.mValue > iNode.mValue )
+		else if ( lCurrentNode.mValue.compareTo( iNode.mValue ) > 0 )
 			return 1 + depth( lCurrentNode.mLeft, iNode );
 		else {
 			return 1 + depth( lCurrentNode.mRight, iNode );
@@ -180,18 +180,18 @@ public class BinarySearchTree {
 
 	}
 
-	public Node findLeastCommonAncestor( int a, int b ){
+	public Node<T> findLeastCommonAncestor( T a, T b ){
 		return findLeastCommonAncestor( this.mRoot, a, b );
 	}
 
-	private Node findLeastCommonAncestor( Node iNode, int a, int b ){
+	private Node<T> findLeastCommonAncestor( Node<T> iNode, T a, T b ){
 		if ( null == iNode )
 			return null;
 		// searching targets from top down
-		if ( iNode.mValue > a && iNode.mValue > b) {
+		if ( iNode.mValue.compareTo( a ) > 0 && iNode.mValue.compareTo( b ) > 0 ) {
 			// targets to the left
 			return findLeastCommonAncestor( iNode.mLeft, a, b );
-		} else if ( iNode.mValue < a && iNode.mValue < b ) {
+		} else if ( iNode.mValue.compareTo( a ) < 0 && iNode.mValue.compareTo( b ) < 0 ) {
 			// targets to the right
 			return findLeastCommonAncestor( iNode.mRight, a, b );
 		} else {
@@ -204,7 +204,7 @@ public class BinarySearchTree {
 		return depth( mRoot );
 	}
 
-	private int depth( Node iNode ){
+	private int depth( Node<T> iNode ){
 		if ( null == iNode )
 			return 0;
 
@@ -215,10 +215,10 @@ public class BinarySearchTree {
 	}
 
 	public boolean hasCycle( ) {
-		return hasCycle( mRoot, new ArrayList<Node>() );
+		return hasCycle( mRoot, new ArrayList<Node<T>>() );
 	}
 
-	private boolean hasCycle( Node iNode, List<Node> iVisited ){
+	private boolean hasCycle( Node<T> iNode, List<Node<T>> iVisited ){
 		if ( null == iNode )
 			return false;
 
@@ -234,7 +234,7 @@ public class BinarySearchTree {
 	}
 
 	public static void main( String[] args ) {
-		BinarySearchTree lBST = new BinarySearchTree();
+		BinarySearchTree<Integer> lBST = new BinarySearchTree<>();
 		lBST.insert( 5 );
 		lBST.insert( 2 );
 		lBST.insert( 6 );

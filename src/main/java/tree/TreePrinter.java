@@ -9,13 +9,13 @@ public class TreePrinter {
 	// Static access only
 	private TreePrinter(){}
 
-	public static void printNode(Node root) {
+	public static <T> void printNode(Node<T> root) {
         int maxLevel = TreePrinter.maxLevel(root);
 
         printNodeInternal(Collections.singletonList(root), 1, maxLevel);
     }
 
-    private static void printNodeInternal(List<Node> nodes, int level, int maxLevel) {
+    private static <T> void printNodeInternal(List<Node<T>> nodes, int level, int maxLevel) {
         if (nodes.isEmpty() || areAllElementsNull(nodes))
             return;
 
@@ -26,8 +26,8 @@ public class TreePrinter {
 
         printWhitespaces(firstSpaces);
 
-        List<Node> newNodes = new ArrayList<Node>();
-        for (Node node : nodes) {
+        List<Node<T>> newNodes = new ArrayList<>();
+        for (Node<T> node : nodes) {
             if (node != null) {
                 System.out.print(node.mValue);
                 newNodes.add(node.mLeft);
@@ -76,15 +76,15 @@ public class TreePrinter {
             System.out.print(" ");
     }
 
-    private static int maxLevel(Node node) {
+    private static <T> int maxLevel(Node<T> node) {
         if (node == null)
             return 0;
 
         return Math.max( maxLevel(node.mLeft), maxLevel( node.mRight ) ) + 1;
     }
 
-    private static boolean areAllElementsNull( List<Node> list ) {
-        for (Node object : list) {
+    private static <T> boolean areAllElementsNull( List<Node<T>> list ) {
+        for (Node<T> object : list) {
             if (object != null)
                 return false;
         }
